@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import storage from './storage';
+import storage from './storage'
 
 export default function useStorage(key) {
   const [state, setState] = useState(() => storage.get(key));

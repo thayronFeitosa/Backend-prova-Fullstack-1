@@ -11,17 +11,26 @@ function initialState() {
     return { user: '', password: '' };
 }
 function validarLogin(data, erro){
-    console.log(data);
-    const {password, email , message} = data
+    
+    const {password, email , message, token} = data
 
  
-        if(password !== undefined) return PopUp.exibeMensagem("error", password, 3000);
-        if(email !== undefined)return PopUp.exibeMensagem("error", email,3000);
-        if(message !== undefined)return PopUp.exibeMensagem("error", message,3000);
+        if(password !== undefined){
+            PopUp.exibeMensagem("error", password, 3000);
+            return {error: password};
+        }
+        if(email !== undefined){
+            PopUp.exibeMensagem("error", email,3000)
+            return {error: email}
+                
+        }
+        if(message !== undefined){
+            PopUp.exibeMensagem("error", message,3000);
+            return {error: message};
+        }
     
-        // PopUp.exibeMensagem("success", 'Cadastro realizado com sucesso',3000);
-
-    
+        PopUp.exibeMensagem("success", 'Seja Bem vindo',3000);
+    return {token : token}
 
 }
 async function login({ user, password }) {
@@ -30,10 +39,10 @@ async function login({ user, password }) {
         password: password
     }
     const response = await ApiService.loginValidator(data); 
-    validarLogin(response);
+    
         
 
-    return response
+    return validarLogin(response)
 
 
 }
@@ -57,8 +66,8 @@ const UserLogin = () => {
         try {
             event.preventDefault();
             const { token, error } = await login(values);
-
             if (token) {
+
                 setToken(token);
                 return history.push('/home');
             } else {

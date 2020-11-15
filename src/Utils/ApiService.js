@@ -2,7 +2,6 @@
  * ApiService e uma array que e responsavel por fazer todas as 
  * requisições com o banco (CRUD) e retornar para o usuario a resposta
  */
-const axios = require("axios").default;
 
 const ApiService = {
 
@@ -33,17 +32,17 @@ const ApiService = {
             })
     },
     userRegister: async (props) => {
-        var URL = 'http://localhost:8080/register';
-        var data = props;
+        // var URL = 'http://localhost:8080/register';
+        // var data = props;
 
     
-        return await axios.post(`${URL}`, data, { headers: { 'Content-Type': 'application/json' } })
-            .then(response => {
-                return response.data
-            }).catch(error => {
-                return error.response
+        // return await axios.post(`${URL}`, data, { headers: { 'Content-Type': 'application/json' } })
+        //     .then(response => {
+        //         return response.data
+        //     }).catch(error => {
+        //         return error.response
 
-            })
+        //     })
     },
 
     TratarErros: (res) => {
