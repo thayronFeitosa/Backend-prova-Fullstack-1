@@ -13,11 +13,11 @@ import Home from './pages/Home'
 
 const PagesRoot = () => (
     <Router>
+      <Route path="/login" component={Login} exact/>
       <StoreProvider>
-      <Route path="/login" component={Login} />
       <Route path="/user/cadastro" component={Cadastro} exact />
-      <RoutesPrivate path="/"component={Home}   />
-      <RoutesPrivate path="/*"component={Home}   />
+      <RoutesPrivate path="/"component={Home} exact  />
+      {/* <RoutesPrivate path="/*"component={Home} exact  /> */}
         {/* <RoutesPrivate path="/user/cadastro" component={Cadastro} exact /> */}
         {/* <RoutesPrivate path="/*" component={div} exact /> */}
         
