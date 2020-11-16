@@ -76,6 +76,8 @@ const CadastrarUser = () => {
             }
         });
 
+       
+
         return cont;
     }
 
@@ -84,11 +86,12 @@ const CadastrarUser = () => {
         try {
             event.preventDefault();
             const validar = await validSubmit();
+            console.log(validar);
             if (validar !== 12) {
                 PopUp.exibeMensagem("error", "Todos os campos são obrigatorios");
             } else {
                 const { name, cpf, email, birthdate, password, confirmpassword, nunber, street, city, state, number, complement } = values;
-                const dataUser = { name, cpf, email, date_of_birth: birthdate, password, password_confirmation: confirmpassword };
+                const dataUser = { name, cpf, email, birthdate, password, password_confirmation: confirmpassword };
                 const dataAddress = { street, city, state, number, complement };
                 const dataTelephone = { nunber }
                 // console.log(dataUser)
@@ -249,8 +252,3 @@ const CadastrarUser = () => {
 };
 
 export default CadastrarUser;
-
-
-
-
-

@@ -10,27 +10,30 @@ import PopUp from '../../Utils/PopUp'
 function initialState() {
     return { user: '', password: '' };
 }
-function validarLogin(data, erro){
-    
-    const {password, email , message, token} = data
+function validarLogin(data, erro) {
+    const { password, email, message, token } = data
 
- 
-        if(password !== undefined){
-            PopUp.exibeMensagem("error", password, 3000);
-            return {error: password};
-        }
-        if(email !== undefined){
-            PopUp.exibeMensagem("error", email,3000)
-            return {error: email}
-                
-        }
-        if(message !== undefined){
-            PopUp.exibeMensagem("error", message,3000);
-            return {error: message};
-        }
-    
-        PopUp.exibeMensagem("success", 'Seja Bem vindo',3000);
-    return {token : token}
+
+    if (password !== undefined) {
+        PopUp.exibeMensagem("error", password, 3000);
+        return { error: password };
+    }
+    if (email !== undefined) {
+        PopUp.exibeMensagem("error", email, 3000)
+        return { error: email }
+
+    }
+    if (message !== undefined || data === 'Usuário ou senha inválidos') {
+        PopUp.exibeMensagem("error", message || data, 3000);
+        return { error: message };
+    }
+
+
+
+
+
+    PopUp.exibeMensagem("success", 'Seja Bem vindo', 3000);
+    return { token: token }
 
 }
 async function login({ user, password }) {
@@ -38,9 +41,10 @@ async function login({ user, password }) {
         email: user,
         password: password
     }
-    const response = await ApiService.loginValidator(data); 
-    
-        
+    const response = await ApiService.loginValidator(data);
+
+    console.log(response)
+
 
     return validarLogin(response)
 
@@ -67,6 +71,7 @@ const UserLogin = () => {
             event.preventDefault();
             const { token, error } = await login(values);
             if (token) {
+                console.log(token);
 
                 setToken(token);
                 return history.push('/home');
@@ -76,6 +81,7 @@ const UserLogin = () => {
                 return;
             }
         } catch (err) {
+
             PopUp.exibeMensagem("error", "Nao foi possivel realizar o login. tente mais tarde");
 
         }

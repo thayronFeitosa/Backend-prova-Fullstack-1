@@ -17,6 +17,8 @@ const PagesRoot = () => (
       <Route path="/login" component={Login} exact />
       <Route path="/user/cadastro" component={Cadastro} exact />
       <RoutesPrivate path="/home" component={Home} exact />
+      <RoutesPrivate path="/" component={Home} exact />
+   
       {/* <RoutesPrivate path="/*"component={Home} exact  /> */}
       {/* <RoutesPrivate path="/user/cadastro" component={Cadastro} exact /> */}
       {/* <RoutesPrivate path="/*" component={div} exact /> */}

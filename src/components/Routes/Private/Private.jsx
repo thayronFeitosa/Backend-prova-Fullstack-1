@@ -5,8 +5,6 @@ import StoreContext from '../../Store/Context'
 const RoutesPrivate = ({ component: Component, ...rest}) => {
   const { token } = useContext(StoreContext);
 
-  console.log(token);
-
   return (
    
     <Route
