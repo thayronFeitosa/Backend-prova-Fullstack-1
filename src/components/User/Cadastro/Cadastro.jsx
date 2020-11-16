@@ -40,7 +40,9 @@ function validarErroGenerico(data){
 
         return false;
     }else{
+     
         PopUp.exibeMensagem("success", 'Cadastro realizado com sucesso',3000);
+        return data;
 
     }
 }
@@ -76,8 +78,6 @@ const CadastrarUser = () => {
             }
         });
 
-       
-
         return cont;
     }
 
@@ -86,12 +86,11 @@ const CadastrarUser = () => {
         try {
             event.preventDefault();
             const validar = await validSubmit();
-            console.log(validar);
             if (validar !== 12) {
                 PopUp.exibeMensagem("error", "Todos os campos são obrigatorios");
             } else {
                 const { name, cpf, email, birthdate, password, confirmpassword, nunber, street, city, state, number, complement } = values;
-                const dataUser = { name, cpf, email, birthdate, password, password_confirmation: confirmpassword };
+                const dataUser = { name, cpf, email, birthdate, password, password_confirmation: confirmpassword, nunber, street, city, state, number, complement };
                 const dataAddress = { street, city, state, number, complement };
                 const dataTelephone = { nunber }
                 // console.log(dataUser)
@@ -103,8 +102,18 @@ const CadastrarUser = () => {
 
 
                 const response = await ApiService.userRegister(dataUser);
+              const {id} = validarErroGenerico(response);
 
-                validarErroGenerico(response);
+              if(id !== undefined){
+                console.log(id);
+                console.log('Vinculando o endereço com o id do cliente');
+
+              }else{
+                  console.log('asdfasdf');
+              }
+
+
+                
               
             }
 
@@ -252,3 +261,8 @@ const CadastrarUser = () => {
 };
 
 export default CadastrarUser;
+
+
+
+
+

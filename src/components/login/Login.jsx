@@ -43,9 +43,6 @@ async function login({ user, password }) {
     }
     const response = await ApiService.loginValidator(data);
 
-    console.log(response)
-
-
     return validarLogin(response)
 
 

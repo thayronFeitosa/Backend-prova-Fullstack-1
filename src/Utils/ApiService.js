@@ -33,7 +33,6 @@ const ApiService = {
     userRegister: async (props) => {
         var URL = 'http://localhost:8080/register';
         var data = props;
-        console.log(data)
 
     
         return await axios.post(`${URL}`, data, { headers: { 'Content-Type': 'application/json' } })
@@ -41,8 +40,6 @@ const ApiService = {
                console.log(response)
                 return response.data
             }).catch(error => {
-                console.log(error)
-
                 return error.response
 
             })
