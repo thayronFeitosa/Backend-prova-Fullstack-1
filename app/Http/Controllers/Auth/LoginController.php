@@ -14,6 +14,6 @@ class LoginController extends Controller
         $token = Auth::attempt($data);
         return !$token
         ? response()->json(['error' => 'Usuário ou senha incorretas']) 
-        : response()->json(["token"=>$token]);
+        : response()->json(['token' => $token, 'user' => auth()->user()]);
     }
 }

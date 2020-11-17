@@ -14,7 +14,6 @@ class UserController extends Controller
     public function createUser(UserRequest $request)
     {
         $data = $request->all();
-
         DB::beginTransaction();
         $user = User::create($data);
         $telefoneData = $request->only(['number']);
@@ -34,9 +33,9 @@ class UserController extends Controller
         $telephones = Telephone::where('user_id', $user->id)->get();
         $address = Address::where('user_id', $user->id)->get();
         $certificate = Certificate::where('user_id', $user->id)->get();
-        $user['telephones'] = $telephones;
-        $user['address'] = $address;
-        $user['certificate'] = $certificate;
+        $user['telephones'] = $telephones[0];
+        $user['address'] = $address[0];
+        $user['certificate'] = $certificate[0];
         return response()->json($user);
     }
 }
