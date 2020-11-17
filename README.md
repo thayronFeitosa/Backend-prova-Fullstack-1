@@ -1,4 +1,58 @@
 # Lumen PHP Framework
+<h1>Configuraçes iniciais</h1>
+<p>
+    Para iniciar o projeto e necessário que o PHP 7.4 e o composer instalado
+    <br/>
+    Agora dentro da pasta raiz do projeto e necesário criar a conexão com o banco de dados no arquivo .inv como o exemplo abaixo.
+    
+    
+    APP_NAME=Lumen
+    APP_ENV=local
+    APP_KEY=
+    APP_DEBUG=true
+    APP_URL=http://localhost
+    APP_TIMEZONE=UTC
+
+    LOG_CHANNEL=stack
+    LOG_SLACK_WEBHOOK_URL=
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=bancoProva
+    DB_USERNAME=root
+    DB_PASSWORD=root123
+
+    CACHE_DRIVER=file
+    QUEUE_CONNECTION=sync
+
+    JWT_KEY=uma_chave_muito_secreta123
+
+    JWT_SECRET=w66eSGm0UwTv0mUl9Wf1wSKiREAth2F5Y91PccPCWig1Alv0Pa2yNLzKQEs3bZy8
+    
+    
+   depois de fazer esses passos e hora de baixar as dependencias do projeto usando o comando 
+   ```
+        composer install
+   ```
+
+´É muito importante que o banco de dados esteja criado para que a aplicação possa se comunicar com o banco.
+<br/><br/>
+    <h3> Criando as tabelas no banco de dados</h3>
+    Para criar as tabelas no banco de dados basta rodar o comando 
+ ``` 
+    php artisan migrate
+```  
+  <h3>Aplicação</h3>
+  <p>Aaplicação deverá acessar a porta 8080 </P>
+  
+  ```
+  php -S localhost:8080 -t public public/index.php
+  ```
+</p>
+
+
+
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
 [![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
