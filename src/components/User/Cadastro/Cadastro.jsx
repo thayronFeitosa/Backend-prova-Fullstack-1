@@ -46,7 +46,7 @@ export default function CadastrarUser() {
     async function onSubmit(event) {
         event.preventDefault();
         values['address'] = address;
-        await ApiService.userRegister(values);
+        await ApiService.createUser(values);
     }
 
     return (

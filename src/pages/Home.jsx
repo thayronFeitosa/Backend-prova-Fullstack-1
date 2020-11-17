@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import ApiService from '../Utils/ApiService'
+import { BrowserRouter as Router, useHistory, Link } from 'react-router-dom';
 
 
 
@@ -17,7 +18,7 @@ const Home = () => {
         const data = await ApiService.getUserValues();
         const { name, cpf, email, birthdate } = data;
         const { address, certificate, telephones } = data;
-        const result = {name,cpf,email, birthdate }
+        const result = { name, cpf, email, birthdate }
 
         setAddress(address);
         setUser(result);
@@ -84,30 +85,35 @@ const Home = () => {
                     </table>
 
                     <div className="py-4">
-                    <h3 className="center">Dados do certificado</h3>
+                        <h3 className="center">Dados do certificado</h3>
 
-                    <table className="striped responsive-table">
-                        <thead className="thead-success ">
-                            <tr className="grey lighten-2">
-                                <th scope="col">subjectDN</th>
-                                <th scope="col">issuerDN</th>
-                                <th scope="col">validFrom</th>
-                                <th scope="col">validTo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
+                        <table className="striped responsive-table">
+                            <thead className="thead-success ">
+                                <tr className="grey lighten-2">
+                                    <th scope="col">subjectDN</th>
+                                    <th scope="col">issuerDN</th>
+                                    <th scope="col">validFrom</th>
+                                    <th scope="col">validTo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
 
-                                <td>{certificate.subjectDN}</td>
-                                <td>{certificate.issuerDN}</td>
-                                <td>{certificate.validFrom}</td>
-                                <td>{certificate.validTo}</td>
+                                    <td>{certificate.subjectDN}</td>
+                                    <td>{certificate.issuerDN}</td>
+                                    <td>{certificate.validFrom}</td>
+                                    <td>{certificate.validTo}</td>
 
 
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <Link to="/Upload">
+                        <button className="btn btn-large">Realizar upload do Certificado .PEM </button>
+                    </Link>
+
                 </div>
             </div>
         </div>

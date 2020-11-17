@@ -21,11 +21,11 @@ const ApiService = {
 
     },
 
-    // getUserValues: async (data) => {
-    //     const response = await api.get('http://localhost:8080/user')
-
-    //     return response
-    // },
+    createUser: async (data)=>{
+        const response = await axios.post('http://localhost:8080/register', data)
+        console.log(response)
+        return response.data
+    },
     loginValidator: async (data) => {
         const response = await axios.post('http://localhost:8080/login', data)
         console.log(response)

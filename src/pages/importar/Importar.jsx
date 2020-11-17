@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ApiService from '../../Utils/ApiService'
 import { CSVReader } from 'react-papaparse'
+import { BrowserRouter as Router, useHistory, Link } from 'react-router-dom';
+
 import './Importar.css';
 
 
@@ -8,7 +10,7 @@ const buttonRef = React.createRef()
 
 export default class Inportar extends Component {
   handleOpenDialog = (e) => {
-    
+
     if (buttonRef.current) {
       buttonRef.current.open(e)
     }
@@ -78,7 +80,7 @@ export default class Inportar extends Component {
                         Escolha arquivo o certificado .pem para a importação.
                       </p>
 
-                      </div>s
+                      </div>
                     </div>
 
                     <div id="importar-botao-importar">
@@ -101,7 +103,10 @@ export default class Inportar extends Component {
             )}
           </CSVReader>
           <div id="import-botao-fechar-row" >
-            <button id="import-botao-fechar" onClick={this.handleRemoveFile}>FECHAR</button>
+
+            <Link to="/">
+              <button id="import-botao-fechar" type="button">VOLTAR</button>
+            </Link>
           </div>
         </div>
 
