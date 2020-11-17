@@ -1,5 +1,27 @@
 # Getting Started with Create React App
-
+<h1>Iniciando o projeto</h1>
+<p>Para iniciar o projeto e necessário que tenha o Npm ou o yarn instalado em seu computador logo apois isso será necesário instalar as dependencias do projeto usando o comando 
+  
+  ```
+    npm install
+  ```
+  
+  ou
+  
+  ```
+  yarn install
+  ```
+    Depois que as dependencias forem baixadas basta rodar o comando:
+  ```
+  npm start
+  ```
+  ou
+  ```
+  yarn start
+  ```
+  
+  Por padrão a aplicação irá rodar na porta 3000
+</p>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
