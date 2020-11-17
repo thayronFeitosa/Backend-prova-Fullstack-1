@@ -1,127 +1,52 @@
-import './css/Cadastro.css';
-import React, { useState, useContext } from 'react';
-import { BrowserRouter as Router, useHistory, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import image from '../../../img/img-celular.svg';
-import PopUp from '../../../Utils/PopUp';
 import ApiService from '../../../Utils/ApiService'
-const CPF = require('cpf-check');
 
+import './css/Cadastro.css';
 
+export default function CadastrarUser() {
+    const [values, setValues] = useState(userInitialState);
+    const [address, setAdress] = useState(addressInitialState);
 
-
-
-
-
-function initialState() {
-    return {
-        name: '', cpf: '', email: '', birthdate: '', password: ''
-        , nunber: '', street: '', city: '', state: '', number: '', complement: '',
-        confirmpassword: ''
-    };
-}
-
-function validarSenha(pass, confirmPass, mesage) {
-    if((pass === confirmPass ? true : false) ==false){
-        PopUp.exibeMensagem("error", mesage);
-        return false;
+    function userInitialState() {
+        return {
+            name: "",
+            cpf: "",
+            email: "",
+            birthdate: "",
+            password: "",
+            password_confirmation: "",
+            number:""
+        };
     }
-    if(pass.length < 8){
-        PopUp.exibeMensagem("error", 'A senha deve ser maior que 8 caracteres');
-        return false;
+    
+    function addressInitialState() {
+        return {
+            street: "",
+            city: "",
+            state: "",
+            number: "",
+            neighborhood: "",
+            complement: "",
+        };
     }
-    return true;
-}
-
-function validarErroGenerico(data){
-    if (data.status > 400) {
-        const {cpf, email} = data.data
-        if(cpf !== undefined)PopUp.exibeMensagem("error", cpf, 3000);
-        if(email !== undefined)PopUp.exibeMensagem("error", email,3000);
-
-        return false;
-    }else{
-     
-        PopUp.exibeMensagem("success", 'Cadastro realizado com sucesso',3000);
-        return data;
-
-    }
-}
-
-function validarCpf(cpf){
-    return CPF.validate(cpf);
-}
-
-const CadastrarUser = () => {
-    const [values, setValues] = useState(initialState);
-    // const [error, setError] = useState(null);
-    // const { setToken } = useContext(StoreContext);
-    // const history = useHistory();
 
     function onChange(event) {
         const { value, name } = event.target;
-
-        setValues({
-            ...values,
-            [name]: value
-        });
+        setValues({ ...values, [name]: value });
     }
-
-    async function validSubmit() {
-        var cont = 0;
-        Object.keys(values).forEach(function (item) {
-            if (values[item] === "") {
-                // console.log("O campo " + item + " é Obrigatorio");
-                return item;
-
-            } else {
-                cont++;
-            }
-        });
-
-        return cont;
+    
+    function onChangeAddress(event) {
+        const { value, name } = event.target;
+        setAdress({ ...address, [name]: value });
     }
 
     async function onSubmit(event) {
-
-        try {
-            event.preventDefault();
-            const validar = await validSubmit();
-            if (validar !== 12) {
-                PopUp.exibeMensagem("error", "Todos os campos são obrigatorios");
-            } else {
-                const { name, cpf, email, birthdate, password, confirmpassword, nunber, street, city, state, number, complement } = values;
-                const dataUser = { name, cpf, email, birthdate, password, password_confirmation: confirmpassword, nunber, street, city, state, number, complement };
-                const dataAddress = { street, city, state, number, complement };
-                const dataTelephone = { nunber }
-                // console.log(dataUser)
-                // console.log(dataAddress)
-                // console.log(dataTelephone)
-                if (!validarSenha(password, confirmpassword, "As senhas digitadas não são iguais")) {
-                    return
-                }
-
-
-                const response = await ApiService.userRegister(dataUser);
-              const {id} = validarErroGenerico(response);
-
-              if(id !== undefined){
-                console.log(id);
-                console.log('Vinculando o endereço com o id do cliente');
-
-              }else{
-                  console.log('asdfasdf');
-              }
-
-
-                
-              
-            }
-
-
-        } catch (err) {
-            alert(err)
-        }
-
+        event.preventDefault();
+        values['address'] = address;
+        await ApiService.userRegister(values);
     }
 
     return (
@@ -168,7 +93,7 @@ const CadastrarUser = () => {
                             <input type="text"
                                 placeholder="telefone"
                                 max="14"
-                                value={values.nunber}
+                                value={values.numaber}
                                 name="nunber"
                                 onChange={onChange}
 
@@ -190,32 +115,32 @@ const CadastrarUser = () => {
                                 placeholder="Rua"
                                 value={values.street}
                                 name="street"
-                                onChange={onChange}
+                                onChange={onChangeAddress}
 
                             />
                             <input type="text"
                                 placeholder="Cidade"
                                 value={values.city}
                                 name="city"
-                                onChange={onChange}
+                                onChange={onChangeAddress}
                             />
                             <input type="text"
                                 placeholder="Estado"
                                 value={values.state}
                                 name="state"
-                                onChange={onChange}
+                                onChange={onChangeAddress}
                             />
                             <input type="text"
                                 placeholder="Numero"
                                 value={values.number}
                                 name="number"
-                                onChange={onChange}
+                                onChange={onChangeAddress}
                             />
                             <input type="text"
                                 placeholder="Complemento"
                                 value={values.complement}
                                 name="complement"
-                                onChange={onChange}
+                                onChange={onChangeAddress}
                             />
                         </div>
 
@@ -240,17 +165,17 @@ const CadastrarUser = () => {
                             />
                             <input type="password"
                                 placeholder="Confirmar senha"
-                                value={values.confirmpassword}
-                                name="confirmpassword"
+                                value={values.password_confirmation}
+                                name="password_confirmation"
                                 onChange={onChange}
                             />
                         </div>
 
                     </div>
-                    <Link to="/login"> <input id="cancelar" value="VOLTAR" /></Link>
-                    <input id="enviar-cadastro" type="submit" value="ENVIAR" />
-
-
+                    <Link to="/login">
+                        <button id="cancelar" type="button">VOLTAR</button>
+                    </Link>
+                    <button id="enviar-cadastro">ENVIAR</button>
                 </form>
             </div>
 
@@ -260,7 +185,6 @@ const CadastrarUser = () => {
     )
 };
 
-export default CadastrarUser;
 
 
 

@@ -32,7 +32,7 @@ function validarLogin(data, erro) {
 
 
 
-    PopUp.exibeMensagem("success", 'Seja Bem vindo', 3000);
+   
     return { token: token }
 
 }
@@ -71,7 +71,7 @@ const UserLogin = () => {
                 console.log(token);
 
                 setToken(token);
-                return history.push('/home');
+                return history.push('/');
             } else {
                 setError(error);
                 setValues(initialState);
@@ -82,9 +82,6 @@ const UserLogin = () => {
             PopUp.exibeMensagem("error", "Nao foi possivel realizar o login. tente mais tarde");
 
         }
-
-
-
     }
 
     return (

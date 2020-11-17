@@ -1,12 +1,11 @@
-import './App.css';
-import Root from './Root'
+import './styles/app.css';
+import Root from './components/Routes/index';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-    <Root />
+        <Root />
     </div>
   );
 }
 
-export default App;

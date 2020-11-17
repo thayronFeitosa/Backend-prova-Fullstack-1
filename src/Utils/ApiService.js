@@ -2,48 +2,36 @@
  * ApiService e uma array que e responsavel por fazer todas as 
  * requisições com o banco (CRUD) e retornar para o usuario a resposta
  */
-const axios = require("axios").default
+const axios = require('axios').default;
+const token = window.localStorage.getItem('@controllertokenacessauth');
 
 const ApiService = {
+    getUserValues: async (data) => {
+        var URL = 'http://localhost:8080/user'
+        const AuthStr = 'Bearer ' + localStorage.getItem('@controllertokenacessauth').replace(/(^"|"$)/g, '')
+        const dados = await axios.get(`${URL}`, { headers: { Authorization: AuthStr } })
+        return dados.data
 
+
+    },
+
+    // getUserValues: async (data) => {
+    //     const response = await api.get('http://localhost:8080/user')
+
+    //     return response
+    // },
     loginValidator: async (data) => {
-
-        return await fetch('http://localhost:8080/login', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            .then(res => res)
-
+        const response = await axios.post('http://localhost:8080/login', data)
+        console.log(response)
+        return response.data
     },
-    createUser: async (data) => {
-       
 
-        return await fetch('http://localhost:8080/register', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-           
-    },
-    userRegister: async (props) => {
-        var URL = 'http://localhost:8080/register';
-        var data = props;
 
-    
-        return await axios.post(`${URL}`, data, { headers: { 'Content-Type': 'application/json' } })
-            .then(response => {
-               console.log(response)
-                return response.data
-            }).catch(error => {
-                return error.response
+    // userRegister: async (props) => {
+    //     const response = await api.post('http://localhost:8080/user', props)
+    //     console.log(response)
+    // },
 
-            })
-    },
 
     TratarErros: (res) => {
         if (!res.ok) {
