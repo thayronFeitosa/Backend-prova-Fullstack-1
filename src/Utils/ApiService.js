@@ -14,6 +14,12 @@ const ApiService = {
 
 
     },
+    uploadPem: async (data) =>{
+        const AuthStr = 'Bearer ' + localStorage.getItem('@controllertokenacessauth').replace(/(^"|"$)/g, '')
+        const response = await axios.post('http://localhost:8080/upload', (data), { headers: { Authorization: AuthStr } });
+        console.log(response);
+
+    },
 
     // getUserValues: async (data) => {
     //     const response = await api.get('http://localhost:8080/user')

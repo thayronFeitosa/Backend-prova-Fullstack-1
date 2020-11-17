@@ -17,16 +17,8 @@ const Home = () => {
         const data = await ApiService.getUserValues();
         const { name, cpf, email, birthdate } = data;
         const { address, certificate, telephones } = data;
-    
+        const result = {name,cpf,email, birthdate }
 
-        const result = {
-            name,
-            cpf,
-            email,
-            birthdate
-        }
-
-        
         setAddress(address);
         setUser(result);
         setCertificate(certificate);

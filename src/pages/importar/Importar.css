@@ -1,0 +1,129 @@
+
+
+
+
+
+#importar-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 95vh;
+}
+#importarTabela-row{
+    width: 1080px;
+    height: 420px;
+    border-radius: 5px;
+    background-color:#FFFFFF;
+    box-shadow: 0px 9px 9px #95BBDBB5;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#importarTabela-title{
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-bottom: 20px;
+    font-size: 25px;
+    color:#588EBE ;
+}
+#importar-instrucoes-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#importar-instrucoes{
+    margin-top: 25px;
+    width: 100%;
+    height: 70px;
+    background-color: #EEF7FB;
+    color: #467F9B;
+    font-size: 20px;
+}
+
+#importar-instrucoes p{
+    margin: 10px;
+    margin-left: 20px;
+}
+
+#importar-botao-importar{
+    width: 80%;
+    margin-top: 50px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#importar-botao-importar label{
+    display: flex;
+    color: #7CAED9;
+    font-size: 25px;
+    margin-right: 35px;
+
+}
+#importar-botao-importar button{
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #C7DEE8;
+}
+#import-botao-rem{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  
+}
+
+#import-botao-remover{
+    border-color: #7CBCE8;
+    background-color: #7CBCE8;
+    color: #FFFF;
+    font-size: 20px;
+    height: 50px;
+    width: 130px;
+    border-radius: 50px;
+    margin-right: 35px;
+    margin-top: 20px;
+  
+}
+
+
+#import-nome-arquivo p{
+    margin-top: 5px;
+    margin-left: 15px;
+  
+}
+
+#importar-instrucoes-body{
+    height: 250px;;
+    width: 94%;
+    margin-left: 3%;
+    flex-direction: row;
+    justify-content: center;
+    border-width: 2px 0px 2px 0px;
+    border-style: solid;
+    border-color: #DBE2ED;
+}
+
+#import-botao-fechar{
+    margin-top: 100px;
+    background-color:#DBE2ED ;
+    color: #748A9D;
+    font-size: 15px;
+    height: 55px;
+    width: 150px;
+    border-radius: 50px;
+    margin-right: 35px;
+}
+
+#import-botao-fechar-row{
+    width: 1080px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
