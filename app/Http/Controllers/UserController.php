@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Address;
+use App\Http\Requests\UserRequest;
 use App\Telephone;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function createUser(Request $request)
+    public function createUser(UserRequest $request)
     {
         $data = $request->all();
         DB::beginTransaction(); 
